@@ -1,5 +1,5 @@
 
-<div class="container mt-5 mb-5 col-md-11" *ngIf="usuarios">
+<div class="container mt-5 mb-5 col-md-12" *ngIf="usuarios">
   <div class="row">
     <div class="col">
       <nav class="navbar navbar-light bg-light">
@@ -28,20 +28,18 @@
     <table class="table table-bordered">
       <thead>
       <tr>
-        <th class="col-md-1 text-center" scope="col">#</th>
-        <th class="col-md-2 text-center" scope="col">User</th>
-        <th class="col-md-4 text-center" scope="col">Nombre y Apellido</th>
-        <th class="col-md-4 text-center" scope="col">Token</th>
-        <th class="col-md-1 text-center" scope="col">Orígen</th>
+        <th class="text-center" scope="col">#</th>
+        <th class="text-center" scope="col">User</th>
+        <th class="text-center" scope="col">Nombre y Apellido</th>
+        <th class="text-center" scope="col">Orígen</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let usuario of usuarios; let indice = index">
-        <th class="col-md-1 text-center" scope="row">{{indice + 1}}</th>
-        <td class="col-md-2 text-center">{{usuario.usuario}}</td>
-        <td class="col-md-4 text-center">{{usuario.nombre + ' ' + usuario.apellido}}</td>
-        <td class="col-md-4 text-center">{{usuario.token}}</td>
-        <td class="col-md-1 text-center">{{usuario.origen}}</td>
+        <th class="text-center" scope="row">{{indice + 1}}</th>
+        <td class="text-center">{{usuario.usuario}}</td>
+        <td class="text-center">{{usuario.nombre + ' ' + usuario.apellido}}</td>
+        <td class="text-center">{{usuario.origen}}</td>
 
       </tr>
       </tbody>

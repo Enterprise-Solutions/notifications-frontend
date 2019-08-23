@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PrincipalComponent} from './principal/principal.component';
+import {FirebaseComponent} from './firebase/firebase.component';
 import {UsuariosComponent} from './usuarios/usuarios.component';
+import {OnesignalComponent} from './onesignal/onesignal.component';
+import {OnesignalNotificacionesComponent} from './onesignal/onesignal-notificaciones/onesignal-notificaciones.component';
 
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'usuarios', pathMatch: 'full'},
   {path: 'usuarios', component: UsuariosComponent},
-  {path: 'principal', component: PrincipalComponent}
+  {path: 'firebase', component: FirebaseComponent},
+  {path: 'onesignal', component: OnesignalComponent},
+  {path: 'osNotifications', component: OnesignalNotificacionesComponent}
 ];
 
 @NgModule({

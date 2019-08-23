@@ -3,11 +3,11 @@ import {CanalesService} from './services/canales.service';
 
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.css']
+  selector: 'app-firebase',
+  templateUrl: './firebase.component.html',
+  styleUrls: ['./firebase.component.css']
 })
-export class PrincipalComponent implements OnInit {
+export class FirebaseComponent implements OnInit {
   id: string;
   // public editable = false;
 
