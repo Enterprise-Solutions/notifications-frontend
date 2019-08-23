@@ -1,0 +1,51 @@
+
+<div class="container mt-5 mb-5 col-md-11" *ngIf="usuarios">
+  <div class="row">
+    <div class="col">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Send Push Notification</a>
+        <form (ngSubmit)="getUsuarios(true)" class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Input user" aria-label="Search" [(ngModel)]="mySearch" name="search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <br>
+        <label for="send_to1" class="font-weight-bold">Users From:</label>
+        <select [(ngModel)]="userSelected" name="send_to1" id="send_to1" (ngModelChange)="getUsuarios()" class="form-control">
+          <option value="all">All</option>
+          <option value="O">One Signal</option>
+          <option value="F">Firebase</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="col-md-1 text-center" scope="col">#</th>
+        <th class="col-md-2 text-center" scope="col">User</th>
+        <th class="col-md-4 text-center" scope="col">Nombre y Apellido</th>
+        <th class="col-md-4 text-center" scope="col">Token</th>
+        <th class="col-md-1 text-center" scope="col">Orígen</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of usuarios; let indice = index">
+        <th class="col-md-1 text-center" scope="row">{{indice + 1}}</th>
+        <td class="col-md-2 text-center">{{usuario.usuario}}</td>
+        <td class="col-md-4 text-center">{{usuario.nombre + ' ' + usuario.apellido}}</td>
+        <td class="col-md-4 text-center">{{usuario.token}}</td>
+        <td class="col-md-1 text-center">{{usuario.origen}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
