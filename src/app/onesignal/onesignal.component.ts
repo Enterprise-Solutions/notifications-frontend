@@ -20,15 +20,13 @@ export class OnesignalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.onChange();
-
     const OneSignal = window['OneSignal'] || [];
 
     OneSignal.push(function() {
 
       OneSignal.init({
 
-        appId: '21c076da-ecc9-4d16-9f25-53d68097b32d',
+        appId: 'ece757e4-9696-4b91-8c9a-31776a9adfd3',
 
       });
 
@@ -79,11 +77,13 @@ export class OnesignalComponent implements OnInit {
 
         // Push notifications are not supported
 
-        console.log('Not Suppoted');
+        console.log('Not Supported');
 
       }
 
     });
+    this.onChange();
+
   }
 
 
