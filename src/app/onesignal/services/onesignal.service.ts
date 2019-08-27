@@ -14,7 +14,7 @@ export class OneSignalService {
   ) { }
 
   sendForm(data) {
-    return this.http.post(`${this.url}/index.php?method=send_all`, JSON.stringify(data),
+    return this.http.post(`${this.url}/index.php`, JSON.stringify(data),
       {headers: new HttpHeaders().set('Content-Type', 'application/json'),
         responseType: 'text'});
   }
