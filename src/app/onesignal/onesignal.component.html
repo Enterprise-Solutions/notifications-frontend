@@ -7,15 +7,36 @@
       <form #myForm="ngForm" (ngSubmit)="enviarNotificacion(myForm)" method="post">
         <div class="form-group">
           <label for="exampleFormControlInput1">Título</label>
-          <input type="email" name="titulo" class="form-control" id="exampleFormControlInput1" placeholder="" ngForm>
+          <input type="email" name="titulo" [(ngModel)]="notificacion.mensajetitulo" class="form-control" id="exampleFormControlInput1" placeholder="" ngModel>
         </div>
+
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Mensaje</label>
-          <textarea class="form-control" name="mensaje" id="exampleFormControlTextarea1" rows="3" ngForm></textarea>
+          <textarea class="form-control" [(ngModel)]="notificacion.mensaje" name="mensaje" id="exampleFormControlTextarea1" rows="3" ngModel></textarea>
         </div>
+
         <div class="form-group">
           <label for="exampleFormControlFile1">Ingrese imagen</label>
-          <input type="file" name="imagen" class="form-control-file" id="exampleFormControlFile1" ngForm>
+          <input type="file" name="imagen" [(ngModel)]="notificacion.imagen" class="form-control-file" id="exampleFormControlFile1" ngModel>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline1" name="customRadioInline1" [(ngModel)]="seleccion" [value]="true" (change)="onChange()" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline1">Enviar a todos</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="customRadioInline2" name="customRadioInline1" [(ngModel)]="seleccion" [value]="false" (change)="onChange()" class="custom-control-input">
+          <label class="custom-control-label" for="customRadioInline2">Seleccionar canal</label>
+        </div>
+        <br><br>
+
+        <div class="form-group" *ngIf="!seleccion">
+          <label for="exampleFormControlSelect2">Enviar a:</label>
+          <select multiple class="custom-select" id="exampleFormControlSelect2" required>
+            <option value="1" selected>Deportes</option>
+            <option value="2">Política</option>
+            <option value="3">Ciencia</option>
+            <option value="4">Ofertas</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Enviar notificación</button>
       </form>

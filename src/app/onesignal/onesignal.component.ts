@@ -7,13 +7,22 @@ import {OneSignalService} from './services/onesignal.service';
   styleUrls: ['./onesignal.component.css']
 })
 export class OnesignalComponent implements OnInit {
-
+  seleccion = true;
+  public notificacion = {
+    to: 'all',
+    mensajetitulo: '',
+    mensaje: '',
+    imagen: 'http://arsiv.cag.edu.tr/upload/2015/05/sports.png',
+    segment: []
+  }
   constructor(
     private oneSignalService: OneSignalService
   ) { }
 
   ngOnInit() {
-    var OneSignal = window['OneSignal'] || [];
+    this.onChange();
+
+    const OneSignal = window['OneSignal'] || [];
 
     OneSignal.push(function() {
 
@@ -24,7 +33,6 @@ export class OnesignalComponent implements OnInit {
       });
 
     });
-
     OneSignal.push(function() {
 
       /* These examples are all valid */
@@ -39,7 +47,7 @@ export class OnesignalComponent implements OnInit {
 
         OneSignal.isPushNotificationsEnabled(function(isEnabled) {
 
-          if (isEnabled){
+          if (isEnabled) {
 
             console.log("Push notifications are enabled!");
 
@@ -53,9 +61,7 @@ export class OnesignalComponent implements OnInit {
 
             });
 
-          }
-
-          else{
+          } else {
 
             console.log("Push notifications are not enabled yet.");
 
@@ -82,10 +88,15 @@ export class OnesignalComponent implements OnInit {
 
 
   enviarNotificacion(form) {
-    console.log(form.form.value);
-    // this.oneSignalService.sendForm(form.value).subscribe(
-    //   (resultado: string) => {
-    //     console.log(resultado);
-    //   });
+    // console.log(form.form.value, this.notificacion);
+    this.oneSignalService.sendForm(this.notificacion).subscribe(
+      (resultado: string) => {
+        console.log(resultado);
+      });
   }
+
+  onChange() {
+    console.log(this.seleccion);
+  }
+
 }
