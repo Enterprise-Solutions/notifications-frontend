@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Globals} from '../../Globals';
 
 
 @Injectable({
@@ -7,13 +8,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class UsuarioService {
 
-  url = 'http://localhost/apiNotification';
-
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private global: Globals
   ) { }
   getUsuarios(param, search) {
-    return this.http.get(`${this.url}/ObtenerUsuarios.php?param=${param}&search=${search}`);
+    return this.http.get(`${this.global.API_ENDPOINT}/ObtenerUsuarios.php?param=${param}&search=${search}`);
   }
 
 }

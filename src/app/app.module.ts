@@ -9,6 +9,7 @@ import {UsuariosComponent} from './usuarios/usuarios.component';
 import { OnesignalComponent } from './onesignal/onesignal.component';
 import { OnesignalNotificacionesComponent } from './onesignal/onesignal-notificaciones/onesignal-notificaciones.component';
 import {FirebaseNotificacionesComponent} from './firebase/firebase-notificaciones/firebase-notificaciones.component';
+import {Globals} from './Globals';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {FirebaseNotificacionesComponent} from './firebase/firebase-notificacione
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
