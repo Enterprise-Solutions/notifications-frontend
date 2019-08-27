@@ -8,12 +8,14 @@ import {FormsModule} from '@angular/forms';
 import {UsuariosComponent} from './usuarios/usuarios.component';
 import { OnesignalComponent } from './onesignal/onesignal.component';
 import { OnesignalNotificacionesComponent } from './onesignal/onesignal-notificaciones/onesignal-notificaciones.component';
+import {FirebaseNotificacionesComponent} from './firebase/firebase-notificaciones/firebase-notificaciones.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FirebaseComponent,
+    FirebaseNotificacionesComponent,
     UsuariosComponent,
     OnesignalComponent,
     OnesignalNotificacionesComponent
