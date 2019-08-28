@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Globals} from '../../Globals';
 
 
 @Injectable({
@@ -7,14 +8,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class FirebaseService {
 
-  url = 'http://localhost/firebase/notificaciones';
-
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private globals: Globals
   ) { }
 
   sendForm(data) {
-    return this.http.post(`${this.url}/index.php`, JSON.stringify(data),
+    return this.http.post(`${this.globals.API_ENDPOINT}/index.php`, JSON.stringify(data),
       {headers: new HttpHeaders().set('Content-Type', 'application/json'),
         responseType: 'text'});
   }
