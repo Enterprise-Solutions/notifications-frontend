@@ -19,4 +19,8 @@ export class FirebaseService {
         responseType: 'text'});
   }
 
+  getCanales() {
+    return this.http.get(`${this.globals.API_ENDPOINT}/ObtenerCanales.php`);
+  }
+
 }

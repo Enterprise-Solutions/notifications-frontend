@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from './services/firebase.service';
+import {CanalesResponse} from './interfaces/canales-response.interface';
+import {Canal} from './interfaces/canales.interface';
 
 
 @Component({
@@ -9,12 +11,13 @@ import {FirebaseService} from './services/firebase.service';
 })
 export class FirebaseComponent implements OnInit {
   seleccion = true;
+  canales: Canal[];
   public notificacion = {
     to: 'topic',
     title: '',
     message: '',
     image: '',
-    canal: []
+    canal: [0]
   };
   // id: string;
   // public editable = false;
@@ -22,7 +25,9 @@ export class FirebaseComponent implements OnInit {
   // tslint:disable-next-line:no-shadowed-variable
   constructor(private FirebaseService: FirebaseService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCanales();
+  }
 
   enviarNotificacion() {
     // console.log(form.form.value);
@@ -32,7 +37,24 @@ export class FirebaseComponent implements OnInit {
       });
   }
 
-  onChange() {
-    console.log(this.seleccion);
+   getCanales() {
+    this.FirebaseService.getCanales().subscribe((respuesta: CanalesResponse) => {
+      this.canales = respuesta.data;
+      console.log(respuesta);
+    });
   }
+
+ /* getValueCanales(valor) {
+    const seleccion = valor.target.value;
+    console.log(seleccion);
+  }*/
+
+  onChange() {
+    console.log(this.notificacion);
+  }
+
+  saveImage(image) {
+  console.log(image);
+  }
+
 }
