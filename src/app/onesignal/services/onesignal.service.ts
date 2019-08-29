@@ -18,4 +18,16 @@ export class OneSignalService {
         responseType: 'text'});
   }
 
+  guardarNotificacion(data) {
+    return this.http.post(`${this.globals.API_ENDPOINT}/AltaNotificaciones.php`, JSON.stringify(data),
+      {headers: new HttpHeaders().set('Content-Type', 'application/json'),
+        responseType: 'text'});
+  }
+  getCanales() {
+    return this.http.get(`${this.globals.API_ENDPOINT}/ObtenerCanales.php`);
+  }
+  getNotificaciones(id) {
+    return this.http.get(`${this.globals.API_ENDPOINT}/ObtenerNotificaciones.php?id=${id}`);
+  }
+
 }
