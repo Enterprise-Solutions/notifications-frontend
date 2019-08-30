@@ -13,13 +13,13 @@ export class OneSignalService {
   ) { }
 
   sendForm(data) {
-    return this.http.post(`${this.globals.API_ENDPOINT}/one_signal.php`, JSON.stringify(data),
+    return this.http.post(`${this.globals.API_ENDPOINT}/onesignal/one_signal.php`, JSON.stringify(data),
       {headers: new HttpHeaders().set('Content-Type', 'application/json'),
         responseType: 'text'});
   }
 
   guardarNotificacion(data) {
-    return this.http.post(`${this.globals.API_ENDPOINT}/AltaNotificaciones.php`, JSON.stringify(data),
+    return this.http.post(`${this.globals.API_ENDPOINT}/AltaNotificaciones.php?id=O`, JSON.stringify(data),
       {headers: new HttpHeaders().set('Content-Type', 'application/json'),
         responseType: 'text'});
   }

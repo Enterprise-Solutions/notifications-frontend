@@ -27,7 +27,7 @@ export class OnesignalComponent implements OnInit {
 
   ngOnInit() {
     this.getCanales();
-    const OneSignal = window['OneSignal'] || [];
+    var OneSignal = window['OneSignal'] || [];
 
     OneSignal.push(function() {
 
@@ -50,6 +50,9 @@ export class OnesignalComponent implements OnInit {
         // Push notifications are supported
 
         console.log('supported');
+        OneSignal.push(function() {
+          // OneSignal.deleteTag('page_topic');
+        });
 
         OneSignal.isPushNotificationsEnabled(function(isEnabled) {
 
@@ -96,14 +99,16 @@ export class OnesignalComponent implements OnInit {
   }
 
 
+
   enviarNotificacion(form) {
     // console.log(form.value);
     this.oneSignalService.sendForm(this.notificacion).subscribe(
       (resultado: string) => {
         console.log(resultado);
+        this.guardarNotificacion();
       });
   }
-
+  //
   guardarNotificacion() {
     this.oneSignalService.guardarNotificacion(this.notificacion).subscribe(
       (resultado: string) => {
@@ -116,6 +121,13 @@ export class OnesignalComponent implements OnInit {
       console.log(respuesta);
     });
   }
+  // addtag() {
+  // }
+  // deletetag() {
+  //   OneSignal.push(function() {
+  //     this.OneSignal.deleteTag('page_topic');
+  //   });
+  // }
 
   onChange() {
     this.notificacion.segment = [];
