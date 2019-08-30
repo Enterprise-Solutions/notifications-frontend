@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from './services/firebase.service';
-import {CanalesResponse} from './interfaces/canales-response.interface';
-import {Canal} from './interfaces/canales.interface';
+import {Canal} from './interfaces/firebase.interface';
+import {CanalesResponse} from './interfaces/firebase-response.interface';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class FirebaseComponent implements OnInit {
   // public editable = false;
 
   // tslint:disable-next-line:no-shadowed-variable
-  constructor(private FirebaseService: FirebaseService) { }
+  constructor(private FirebaseService: FirebaseService,
+              private router: Router, ) { }
 
   ngOnInit() {
     this.getCanales();
@@ -33,7 +35,15 @@ export class FirebaseComponent implements OnInit {
     // console.log(form.form.value);
     this.FirebaseService.sendForm(this.notificacion).subscribe(
       (resultado: string) => {
+        this.addNotificaciones();
+        this.volver();
         console.log(resultado);
+      });
+  }
+
+  addNotificaciones() {
+    this.FirebaseService.add(this.notificacion).subscribe(
+      () => {
       });
   }
 
@@ -44,6 +54,7 @@ export class FirebaseComponent implements OnInit {
     });
   }
 
+
  /* getValueCanales(valor) {
     const seleccion = valor.target.value;
     console.log(seleccion);
@@ -53,8 +64,9 @@ export class FirebaseComponent implements OnInit {
     console.log(this.notificacion);
   }
 
-  saveImage(image) {
-  console.log(image);
+  volver() {
+    this.router.navigate(['../fbNotifications'], );
   }
+
 
 }

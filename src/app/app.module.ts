@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FirebaseComponent } from './firebase/firebase.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UsuariosComponent} from './usuarios/usuarios.component';
 import { OnesignalComponent } from './onesignal/onesignal.component';
 import { OnesignalNotificacionesComponent } from './onesignal/onesignal-notificaciones/onesignal-notificaciones.component';
@@ -25,7 +25,8 @@ import {Globals} from './Globals';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [Globals],
   bootstrap: [AppComponent]

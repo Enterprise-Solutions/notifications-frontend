@@ -12,9 +12,9 @@
           <label for="exampleFormControlTextarea1">Mensaje</label>
           <textarea class="form-control" name="mensaje" [(ngModel)]="notificacion.message" id="exampleFormControlTextarea1" rows="3" ngForm></textarea>
         </div>
-        <div class="form-group container">
-          <label for="exampleFormControlFile1">Ingrese imagen</label>
-          <input #imageInput type="file" accept="image/*" name="imagen" (change)="saveImage(imageInput)" class="form-control-file" id="exampleFormControlFile1" ngForm>
+        <div class="form-group">
+          <label for="exampleFormControlInput2">Ingrese URL</label>
+          <input type="email" name="imagen" [(ngModel)]="notificacion.image" class="form-control" id="exampleFormControlInput2" placeholder="" ngForm>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
           <input type="radio" id="customRadioInline1"  name="customRadioInline1" [(ngModel)]="seleccion" [value]="true"
@@ -37,7 +37,8 @@
           </select>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Enviar notificación</button>
+        <button type="submit" class="mr-3 btn btn-primary" (click)="enviarNotificacion()">Enviar notificación</button>
+        <button type="submit" class="btn btn-primary" (click)="volver()">Cancelar</button>
       </form>
     </div>
   </div>

@@ -8,6 +8,7 @@ import {Globals} from '../../Globals';
 })
 export class FirebaseService {
 
+
   constructor(
     private http: HttpClient,
     private globals: Globals
@@ -21,6 +22,17 @@ export class FirebaseService {
 
   getCanales() {
     return this.http.get(`${this.globals.API_ENDPOINT}/ObtenerCanales.php`);
+  }
+
+  add(data) {
+    return this.http.post(`${this.globals.API_ENDPOINT}/firebase/CrearNotificaciones.php?id=F`, JSON.stringify(data),
+      {headers: new HttpHeaders().set('Content-Type', 'application/json'),
+        responseType: 'text'});
+  }
+
+  getNotificaciones(id) {
+    console.log(id);
+    return this.http.get(`${this.globals.API_ENDPOINT}/firebase/ObtenerNotificaciones.php?id=${id}`);
   }
 
 }
