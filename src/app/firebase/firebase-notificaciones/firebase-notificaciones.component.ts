@@ -11,14 +11,6 @@ import {NotificacionesResponse} from '../interfaces/firebase-response.interface'
 })
 export class FirebaseNotificacionesComponent implements OnInit {
   notificaciones: Notificacion[];
-  nuevaNotificacion = {
-    id: null,
-    titulo: null,
-    descripcion: null,
-    categoria: null,
-    origen: null,
-    imagen: null
-  };
 
   constructor(
     private router: Router,
@@ -38,10 +30,6 @@ export class FirebaseNotificacionesComponent implements OnInit {
 
   crearNotificacion() {
     this.router.navigate(['../firebase']);
-    this.firebaseService.add(this.nuevaNotificacion).subscribe(
-      resultado => {
-      }
-    );
   }
 
 }

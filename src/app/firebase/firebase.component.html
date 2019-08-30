@@ -6,11 +6,11 @@
       <form (ngSubmit)="enviarNotificacion()" method="post">
         <div class="form-group">
           <label for="exampleFormControlInput1">Título</label>
-          <input type="email" name="titulo" [(ngModel)]="notificacion.title" class="form-control" id="exampleFormControlInput1" placeholder="" ngForm>
+          <input type="email" name="titulo" [(ngModel)]="notificacion.titulo" class="form-control" id="exampleFormControlInput1" placeholder="" ngForm>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Mensaje</label>
-          <textarea class="form-control" name="mensaje" [(ngModel)]="notificacion.message" id="exampleFormControlTextarea1" rows="3" ngForm></textarea>
+          <textarea class="form-control" name="mensaje" [(ngModel)]="notificacion.mensaje" id="exampleFormControlTextarea1" rows="3" ngForm></textarea>
         </div>
         <div class="form-group">
           <label for="exampleFormControlInput2">Ingrese URL</label>
@@ -31,9 +31,9 @@
         <div class="form-group" *ngIf="!seleccion">
           <label class="my-1 mr-3" for="inlineFormCustomSelectPref">Enviar a:</label>
           <select multiple name="canales" [(ngModel)]="notificacion.canal" class="custom-select my-1 mr-sm-2"
-                  (ngModelChange)="onChange()" id="inlineFormCustomSelectPref">
-            <option value="0" selected>Choose...</option>
-            <option [value]="canal.id" *ngFor="let canal of canales">{{canal.nombre}}</option>
+                  (change)="onChange1()" id="inlineFormCustomSelectPref">
+            <option selected>Choose...</option>
+            <option [value]="canal.nombre" *ngFor="let canal of canales">{{canal.nombre}}</option>
           </select>
         </div>
         <br>

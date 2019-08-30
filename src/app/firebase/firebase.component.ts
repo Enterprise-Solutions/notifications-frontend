@@ -14,11 +14,10 @@ export class FirebaseComponent implements OnInit {
   seleccion = true;
   canales: Canal[];
   public notificacion = {
-    to: 'topic',
-    title: '',
-    message: '',
-    image: '',
-    canal: [0]
+    titulo: '',
+    mensaje: '',
+    canal: [],
+    image: ''
   };
   // id: string;
   // public editable = false;
@@ -29,6 +28,8 @@ export class FirebaseComponent implements OnInit {
 
   ngOnInit() {
     this.getCanales();
+    this.onChange();
+    this.onChange1();
   }
 
   enviarNotificacion() {
@@ -61,6 +62,13 @@ export class FirebaseComponent implements OnInit {
   }*/
 
   onChange() {
+    this.notificacion.canal = [];
+    if (this.seleccion === true) {
+      this.notificacion.canal[0] = 'all';
+    }
+    console.log(this.notificacion);
+  }
+  onChange1() {
     console.log(this.notificacion);
   }
 
