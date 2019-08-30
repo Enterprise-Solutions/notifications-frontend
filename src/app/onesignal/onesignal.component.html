@@ -16,8 +16,8 @@
         </div>
 
         <div class="form-group">
-          <label for="exampleFormControlFile1">Ingrese imagen</label>
-          <input type="file" name="imagen" class="form-control-file" id="exampleFormControlFile1" ngModel>
+          <label for="image">Ingrese imagen</label>
+          <input type="file" name="imagen" class="form-control-file" (change)="onChange2($event)" id="image" ngModel>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
           <input type="radio" id="customRadioInline1" name="customRadioInline1" [(ngModel)]="seleccion" [value]="true" (change)="onChange()" class="custom-control-input">
@@ -31,11 +31,9 @@
 
         <div class="form-group" *ngIf="!seleccion">
           <label for="exampleFormControlSelect2">Enviar a:</label>
-          <select multiple class="custom-select" id="exampleFormControlSelect2" required>
-            <option value="1" selected>Deportes</option>
-            <option value="2">Política</option>
-            <option value="3">Ciencia</option>
-            <option value="4">Ofertas</option>
+          <select multiple class="custom-select" [(ngModel)]="notificacion.segment" id="exampleFormControlSelect2" name="canales" (change)="onChange1()" required>
+            <option [value]="canal.nombre" *ngFor="let canal of canales">{{canal.nombre}}</option>
+
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Enviar notificación</button>

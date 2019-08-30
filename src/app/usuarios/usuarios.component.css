@@ -1,0 +1,5 @@
+  #table1 {
+    height: 55vh;
+    overflow: hidden;
+    overflow-y: auto;
+  }

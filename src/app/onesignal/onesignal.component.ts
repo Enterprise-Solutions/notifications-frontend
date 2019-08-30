@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {OneSignalService} from './services/onesignal.service';
+import {Canal} from './interfaces/canal.interface';
+import {UsuariosResponse} from '../usuarios/interfaces/usuario-response.interface';
+import {CanalesResponse} from './interfaces/canales-response.interface';
 
 @Component({
   selector: 'app-onesignal',
@@ -7,26 +10,31 @@ import {OneSignalService} from './services/onesignal.service';
   styleUrls: ['./onesignal.component.css']
 })
 export class OnesignalComponent implements OnInit {
+  urlImage = 'http://enterprise.elmejorhosting.online/images/';
+  imageName: string;
   seleccion = true;
   public notificacion = {
-    to: 'all',
     mensajetitulo: '',
     mensaje: '',
-    imagen: 'http://arsiv.cag.edu.tr/upload/2015/05/sports.png',
+    // imagen: 'https://2.bp.blogspot.com/-aPgcJ-unaZo/W8uF-v8zn0I/AAAAAAAACtA/7Pb7fRU6LlY7pCvCivlcTpAHH3DFXQsMgCLcBGAs/s0/RIOT_256%2BALT02.png',
+    imagen: '',
     segment: []
   }
+  canales: Canal[];
   constructor(
     private oneSignalService: OneSignalService
   ) { }
 
   ngOnInit() {
-    const OneSignal = window['OneSignal'] || [];
+    this.getCanales();
+    var OneSignal = window['OneSignal'] || [];
 
     OneSignal.push(function() {
 
       OneSignal.init({
 
-        appId: 'ece757e4-9696-4b91-8c9a-31776a9adfd3',
+        // appId: 'ece757e4-9696-4b91-8c9a-31776a9adfd3',
+        appId: '21c076da-ecc9-4d16-9f25-53d68097b32d',
 
       });
 
@@ -42,6 +50,9 @@ export class OnesignalComponent implements OnInit {
         // Push notifications are supported
 
         console.log('supported');
+        OneSignal.push(function() {
+          // OneSignal.deleteTag('page_topic');
+        });
 
         OneSignal.isPushNotificationsEnabled(function(isEnabled) {
 
@@ -83,20 +94,54 @@ export class OnesignalComponent implements OnInit {
 
     });
     this.onChange();
+    this.onChange1();
 
   }
 
 
+
   enviarNotificacion(form) {
-    // console.log(form.form.value, this.notificacion);
+    // console.log(form.value);
     this.oneSignalService.sendForm(this.notificacion).subscribe(
+      (resultado: string) => {
+        console.log(resultado);
+        this.guardarNotificacion();
+      });
+  }
+  //
+  guardarNotificacion() {
+    this.oneSignalService.guardarNotificacion(this.notificacion).subscribe(
       (resultado: string) => {
         console.log(resultado);
       });
   }
+  getCanales() {
+    this.oneSignalService.getCanales().subscribe((respuesta: CanalesResponse) => {
+      this.canales = respuesta.data;
+      console.log(respuesta);
+    });
+  }
+  // addtag() {
+  // }
+  // deletetag() {
+  //   OneSignal.push(function() {
+  //     this.OneSignal.deleteTag('page_topic');
+  //   });
+  // }
 
   onChange() {
-    console.log(this.seleccion);
+    this.notificacion.segment = [];
+    if (this.seleccion === true) {
+      this.notificacion.segment[0] = 'all';
+    }
+    console.log(this.notificacion);
+  }
+  onChange1() {
+    console.log(this.notificacion);
   }
 
+  onChange2(event) {
+    this.notificacion.imagen = this.urlImage + event.target.files[0].name;
+    console.log(this.notificacion.imagen);
+  }
 }

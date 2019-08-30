@@ -1,4 +1,4 @@
-<div class="container mt-1 mb-5 col-md-12">
+<div class="container mt-1 mb-5 col-md-12" *ngIf="notificaciones">
   <div class="row">
     <div class="col">
       <nav class="navbar navbar-light bg-light">
@@ -17,21 +17,20 @@
         <th class="text-center" scope="col">#</th>
         <th class="text-center" scope="col">Título</th>
         <th class="text-center" scope="col">Descripción</th>
-        <th class="text-center" scope="col">Categoría</th>
-        <th class="text-center" scope="col">Orígen</th>
+        <th class="text-center" scope="col">Canal</th>
+        <th class="text-center" scope="col">Image</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th class="text-center" scope="row">1</th>
-        <td class="text-center">Notificación1</td>
-        <td class="text-center">Hola</td>
-        <td class="text-center">Deportes</td>
-        <td class="text-center">O</td>
+      <tr *ngFor="let notificacion of notificaciones; let indice = index">
+      <th class="text-center" scope="row">{{indice + 1}}</th>
+      <td class="text-center">{{notificacion.titulo}}</td>
+      <td class="text-center">{{notificacion.descripcion}}</td>
+      <td class="text-center">{{notificacion.canal}}</td>
+      <td class="text-center">{{notificacion.image}}</td>
 
       </tr>
       </tbody>
     </table>
-
   </div>
 </div>
